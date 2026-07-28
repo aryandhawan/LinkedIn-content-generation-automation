@@ -1,0 +1,8 @@
+# Tunable parameters
+llm:
+  model_name: "llama-3.3-70b-versatile"
+  temperature: 0.4
+
+sources:
+  hackernews_url: "https://hn.algolia.com/api/v1/search?tags=front_page"
+  reddit_rss_url: "https://www.reddit.com/r/artificial/top/.rss?t=day"
