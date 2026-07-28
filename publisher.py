@@ -30,11 +30,3 @@ def publish_to_linkedin(caption: str, poster_path: str) -> bool:
     except requests.exceptions.RequestException as e:
         print(f"[publisher] Failed to send data to Make.com: {e}")
         return False
-
-
-if __name__ == "__main__":
-       success = publish_to_linkedin(
-        caption="This is a test post from my LinkedIn automation agent.",
-        poster_path="linkedin_poster_editorial.png"
-    )
-       print(f"Success: {success}")
