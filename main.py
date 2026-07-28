@@ -7,7 +7,7 @@ from agent import get_trending_topics
 from content_gen import generate_post
 from image_gen import generate_poster
 from PIL import Image
-# from publisher import publish_to_linkedin   # wired in once Make.com webhook is set up
+from publisher import publish_to_linkedin
 
 
 def main():
@@ -57,8 +57,11 @@ def main():
     confirm = input("\nPost this to LinkedIn? (y/n) ").strip().lower()
 
     if confirm == "y":
-        print("\n[Publishing step not wired up yet — this is where the Make.com webhook call goes]")
-        # publish_to_linkedin(post_text, poster_path)
+        success = publish_to_linkedin(post_text, poster_path)
+        if success:
+            print("\nPublished to LinkedIn.")
+        else:
+            print("\nSomething went wrong — check the error above. Post was not confirmed published.")
     else:
         print("\nDiscarded. Nothing was published.")
 
