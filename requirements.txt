@@ -1,0 +1,9 @@
+groq
+requests
+python-dotenv
+pyyaml
+langchain-groq
+langchain-core
+langchain
+pydantic
+langchain-classic
