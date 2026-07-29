@@ -37,7 +37,7 @@ No post reaches LinkedIn without a human seeing the actual caption and the actua
 
 ### Architecture Flowchart 
 
-![alt text](image.png)
+![Architecture diagram](Architecture.png)
 
 ---
 
