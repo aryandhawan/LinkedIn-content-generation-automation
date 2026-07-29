@@ -35,6 +35,10 @@ Either data source can fail (rate limits, timeouts, downtime) without crashing t
 ### Human-in-the-loop, twice
 No post reaches LinkedIn without a human seeing the actual caption and the actual poster first. This isn't a limitation — for anything publishing on a company's behalf, a review gate is the correct design, not a missing feature.
 
+### Architecture Flowchart 
+
+![alt text](image.png)
+
 ---
 
 ## Tech stack
