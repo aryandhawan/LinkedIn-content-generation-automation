@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
 from pydantic import BaseModel, Field
 
-from tools import fetch_hackernews, fetch_reddit
+from core.tools import fetch_hackernews, fetch_reddit
 
 load_dotenv()
 
@@ -39,7 +39,7 @@ def reddit_tool() -> list[dict]:
 tools=[hackernews_tool, reddit_tool]
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-20b",
     temperature=0.3,  # since this is for trend scouting, we want more factual and less creative output
     api_key=os.getenv("GROQ_API_KEY")
 )
@@ -68,7 +68,7 @@ agent=create_tool_calling_agent(llm,tools=tools,prompt=prompt)
 agent_executor=AgentExecutor(agent=agent,tools=tools,verbose=True)
 
 structuring_llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-20b",
     temperature=0,
     api_key=os.getenv("GROQ_API_KEY")
 ).with_structured_output(TopicList)

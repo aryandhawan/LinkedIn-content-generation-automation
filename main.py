@@ -3,11 +3,11 @@ Entry point — runs the full flow end to end:
 agent finds trending topics -> HITL topic/tone selection -> generate post -> HITL approval -> publish
 """
 
-from agent import get_trending_topics
-from content_gen import generate_post
-from image_gen import generate_poster
+from core.agent import get_trending_topics
+from core.content_gen import generate_post
+from core.image_gen import generate_poster
 from PIL import Image
-from publisher import publish_to_linkedin
+from platforms.linkedin.publisher import publish_to_linkedin
 
 
 def main():
