@@ -7,3 +7,4 @@ langchain-core
 langchain
 pydantic
 langchain-classic
+uvicorn
