@@ -8,3 +8,4 @@ langchain
 pydantic
 langchain-classic
 uvicorn
+streamlit
