@@ -4,6 +4,9 @@ import requests
 from pydantic import BaseModel
 from fastapi import FastAPI
 from platforms.discord.text_gen import Reply
+from dotenv import load_dotenv
+
+load_dotenv()
 app=FastAPI()
 
 

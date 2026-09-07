@@ -16,7 +16,7 @@ import os
 
 app = FastAPI()
 
-DISCORD_MAKE_URL = os.getenv("DISCORD_MAKE_URL", "")
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 
 
 # ---------- request/response models ----------
@@ -90,11 +90,11 @@ def generate_discord(request: GenerateRequest):
 
 @app.post("/publish/discord")
 def publish_discord_route(request: DiscordPublishRequest):
-    if not DISCORD_MAKE_URL:
-        raise HTTPException(status_code=500, detail="DISCORD_MAKE_URL not configured")
+    if not DISCORD_WEBHOOK_URL:
+        raise HTTPException(status_code=500, detail="DISCORD_WEBHOOK_URL not configured")
 
     payload = build_discord_payload(request.model_dump())
-    response = requests.post(DISCORD_MAKE_URL, json=payload, timeout=10)
+    response = requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=10)
     response.raise_for_status()
     return {"status": "published"}
 
