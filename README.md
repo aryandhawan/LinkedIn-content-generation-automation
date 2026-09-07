@@ -1,4 +1,4 @@
-# Tandem AI Labs — LinkedIn Content Agent
+# Tandem AI Labs — LinkedIn and Discord Content transformation Agent
 
 A hybrid, agentic content pipeline that scouts real trending discussions, reasons about what's actually worth posting about, generates a branded LinkedIn post end-to-end, and publishes it — with a human approval gate before anything goes public.
 
@@ -94,6 +94,35 @@ MAKE_WEBHOOK_URL=your_make_com_webhook_url
   - **Title / Alt Text** mapped to the incoming poster headline (not the full caption — LinkedIn/Make field limits are shorter than the full post text)
   - **File** mapped to the incoming image data
 - The scenario must be **activated (turned on)**, not left in test/draft mode, or the webhook will return a 410 error after its first test call
+
+## Discord — repurposed posting
+
+Alongside LinkedIn, the same underlying content can be reformatted and published to a Discord channel as a rich embed — demonstrating the platform's actual "automated content transformation" premise: one piece of source content, adapted per platform rather than blindly reposted.
+
+### What it does
+
+1. **Takes the same generated content** as input — no separate trend-scouting step; Discord publishing is a downstream *reformatting* of content, not an independent generation pipeline
+2. **Reformats for tone and structure** — a dedicated LLM call rewrites the content specifically for Discord's conventions: shorter, more casual, no hashtags, markdown-appropriate formatting — a distinct system prompt from the LinkedIn caption generator
+3. **Structures the output** — returns a `title` + `description`, validated via Pydantic, matching exactly what a Discord embed needs
+4. **Publishes via webhook** — the structured reply is sent to a Make.com scenario, which posts it as an embed to the configured Discord channel
+
+### Why a separate reformatting step, not the same LinkedIn caption reused
+
+LinkedIn and Discord have genuinely different norms — a LinkedIn-style hook-line-and-hashtags post reads as out of place in a Discord channel, and a bare Discord-style embed would undersell the content on LinkedIn. Rather than post identical text to both, each platform gets its own tone/format pass over the same underlying content — the actual content-transformation logic, not just multi-platform posting.
+
+---
+
+## Tech stack (additions)
+
+| Layer | Technology |
+|---|---|
+| Discord content formatting | `langchain-groq` + Pydantic structured output |
+| Discord publishing orchestration | Make.com (webhook trigger → Discord embed) |
+
+---
+
+## Project structure (additions)
+
 
 **4. Run it:**
 ```bash
